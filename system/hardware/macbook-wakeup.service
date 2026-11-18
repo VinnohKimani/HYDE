@@ -1,0 +1,11 @@
+[Unit]
+Description=Disable SPIT ACPI Wakeup Trigger on MacBook Pro 12,1
+After=suspend.target hibernate.target hybrid-sleep.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'if grep -q "SPIT.*enabled" /proc/acpi/wakeup; then echo SPIT > /proc/acpi/wakeup; fi'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target sleep.target

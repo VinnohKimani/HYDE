@@ -1,0 +1,21 @@
+# Arch User Repository (AUR) Packages
+# Required desktop enhancements, custom themes, and HyDE tools
+
+# HyDE Ecosystem & Theming
+swww
+wlogout
+swaylock-effects-git
+hyprpicker
+pamixer
+
+# SDDM Themes
+sddm-sugar-candy-git
+
+# Audio & Hardware Specifics
+hda-verb
+libinput-gestures
+mbpfan-git
+
+# Fonts & UI Polish
+otf-font-awesome
+ttf-material-design-icons-webfont

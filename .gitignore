@@ -1,0 +1,68 @@
+# ==============================================================================
+# Git Ignore Rules for HyDE Dotfiles & System Repository
+# ==============================================================================
+
+# --- Security Exclusions ---
+# SSH Keys & Identities
+**/.ssh/
+**/.ssh/*
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.pem
+*.key
+*.p12
+
+# NetworkManager Wi-Fi Credentials & Connections
+/etc/NetworkManager/system-connections/*
+**/NetworkManager/system-connections/*
+*.nmconnection
+
+# GPG Keys & Keyrings
+**/.gnupg/
+*.gpg
+*.keyring
+
+# Environment Variables & Tokens
+.env
+.env.*
+*.env
+*.token
+*.secret
+
+# --- Browser & Session Caches ---
+**/google-chrome/
+**/chromium/
+**/BraveSoftware/
+**/Brave-Browser/
+**/mozilla/firefox/*.default*/
+**/cache/
+**/Cache/
+**/GPUCache/
+**/Code/User/History/
+**/Code/User/workspaceStorage/
+
+# Shell & Command History
+.zsh_history
+.bash_history
+.lesshst
+.node_repl_history
+
+# --- Temporary Files & Editors ---
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
+.DS_Store
+Thumbs.db
+
+# Package build artifacts
+yay-build-*/
+*.tar.zst
+*.tar.xz
+*.pkg.tar.*
+pkg/
+src/

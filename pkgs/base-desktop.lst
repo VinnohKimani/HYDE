@@ -1,0 +1,69 @@
+# Base Desktop Environment: HyDE / Hyprland 0.57+ (Wayland)
+# Core packages required for Wayland display, audio, bar, notifications, and shell
+
+# Wayland Compositor & Core
+hyprland
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+polkit-gnome
+qt5-wayland
+qt6-wayland
+
+# Display Manager
+sddm
+
+# Audio Stack (PipeWire)
+pipewire
+pipewire-audio
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+wireplumber
+alsa-utils
+pavucontrol
+playerctl
+
+# Status Bar, Launchers & Shell UI
+waybar
+rofi-wayland
+dunst
+kitty
+zsh
+zsh-completions
+starship
+
+# Hardware & System Utilities
+brightnessctl
+bluez
+bluez-utils
+networkmanager
+systemd-oomd
+zram-generator
+ethtool
+lm_sensors
+acpi
+upower
+
+# Wayland Utilities & Media Capture
+grim
+slurp
+swappy
+wl-clipboard
+cliphist
+
+# File Management & Viewers
+thunar
+tumbler
+thunar-archive-plugin
+file-roller
+imv
+mpv
+fastfetch
+
+# Fonts & Icons
+ttf-jetbrains-mono-nerd
+ttf-fira-code
+noto-fonts
+noto-fonts-emoji
+noto-fonts-cjk
+papirus-icon-theme

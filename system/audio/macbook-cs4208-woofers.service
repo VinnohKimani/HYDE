@@ -1,0 +1,12 @@
+[Unit]
+Description=MacBook Pro 12,1 Cirrus CS4208 Dual Woofer Unmute Service
+After=sound.target suspend.target hibernate.target hybrid-sleep.target
+Wants=sound.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/macbook-cs4208-woofers.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target sleep.target

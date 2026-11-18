@@ -1,0 +1,39 @@
+# HyDE Ecosystem Configuration
+# Configuration profile for Apple MacBook Pro 12,1
+
+[profile]
+name = "MacBookPro12,1-HyDE"
+author = "HyDE Community"
+version = "2.0"
+
+[display]
+hidpi_scaling = 2.0
+internal_monitor = "eDP-1"
+refresh_rate = 60
+auto_detect_external = true
+
+[theming]
+theme = "Catppuccin Mocha"
+color_scheme = "dark"
+wallbash = true
+cursor_theme = "Bibata-Modern-Classic"
+cursor_size = 24
+icon_theme = "Papirus-Dark"
+font_sans = "JetBrainsMono Nerd Font"
+font_size = 11
+
+[audio]
+card_codec = "Cirrus CS4208"
+quad_speaker_mode = true
+pipewire_dsp_filter = true
+volume_limit = 120
+
+[battery]
+warning_threshold = 20
+critical_threshold = 10
+emergency_threshold = 5
+
+[waybar]
+layout = "default"
+position = "top"
+transparent = true

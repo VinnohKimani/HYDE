@@ -1,0 +1,38 @@
+# Developer Environments, Compilers, Runtimes & Tooling
+
+# Core Development Tooling
+base-devel
+git
+git-delta
+neovim
+tmux
+ripgrep
+fd
+fzf
+jq
+tree
+htop
+btop
+strace
+gdb
+
+# Shell & Terminal Multiplexing
+zsh-syntax-highlighting
+zsh-autosuggestions
+
+# Runtimes & Languages
+python
+python-pip
+python-virtualenv
+nodejs
+npm
+rust
+cargo
+clang
+cmake
+ninja
+
+# Containers & Virtualization
+docker
+docker-compose
+docker-buildx
