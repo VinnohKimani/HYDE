@@ -1,4 +1,4 @@
-# 🍏 HyDE: Giving the 2015 MacBook Pro a Second Life (With Extra Bass)
+# HyDE: Giving the 2015 MacBook Pro a Second Life (With Extra Bass)
 ### Automated Post-Install & Dotfiles Suite for Apple MacBook Pro 13" (Early 2015, MacBookPro12,1)
 ### Powered by Arch Linux, HyDE & Hyprland 0.57+ (Native Lua)
 
@@ -11,7 +11,7 @@
 
 ---
 
-## ⚡ What Is This Repo Doing? (TL;DR)
+##  What Is This Repo Doing? (TL;DR)
 
 You just finished a fresh `archinstall`. You have a cold black TTY screen, a blinking cursor, an 11-year-old unibody aluminum machine with a glowing Apple logo, and a vision.
 
@@ -25,7 +25,7 @@ It launches an interactive TUI checklist that configures your entire system—fr
 
 ---
 
-## 🧰 The MacBook Pro 2015 Quirks (And How We Fix Every Single One)
+##  The MacBook Pro 2015 Quirks (And How We Fix Every Single One)
 
 The Early 2015 Retina MacBook Pro is the pinnacle of Apple hardware engineering: MagSafe 2, tactile scissor keys, dual Thunderbolt 2 / Mini-DP, HDMI, full-size SD card slot, and real USB ports. 
 
@@ -47,27 +47,7 @@ However, running mainline Linux on it without hardware-specific tuning comes wit
 
 ---
 
-## ❓ FAQ: Do I Need to Run the Package Export Commands?
-
-> **Short Answer: NO!**
-
-The package lists in `pkgs/` are completely pre-configured and ready to deploy:
-- `pkgs/base-desktop.lst` (Hyprland 0.57+, SDDM, Waybar, Dunst, Kitty, PipeWire, brightness/volume scripts, fonts)
-- `pkgs/aur.lst` (Yay, mbpfan, wlogout, swaylock-effects, etc.)
-- `pkgs/dev.lst` (Neovim, Tmux, Python, Node, Rust, Docker, etc.)
-- `pkgs/apps.lst` (Brave, Discord, Telegram, Obsidian, VS Code, etc.)
-
-**When would you use the export commands?**  
-Only if you have been daily-driving this system for months, installed 30 new personal packages, and want to **snapshot your installed apps back into your git repo**:
-```bash
-pacman -Qqen > pkgs/base-desktop.lst   # Snapshot official packages
-pacman -Qqem > pkgs/aur.lst            # Snapshot AUR packages
-```
-If you are doing a fresh install or reinstalling: **just run `./install.sh` and let it do the heavy lifting.**
-
----
-
-## 🏗️ Architecture & Layout
+## Architecture & Layout
 
 ```
 .
@@ -91,7 +71,7 @@ If you are doing a fresh install or reinstalling: **just run `./install.sh` and 
 
 ---
 
-## 🚀 Quick Start (Fresh Machine)
+##  Quick Start (Fresh Machine)
 
 1. Boot into your fresh user account from `archinstall`.
 2. Run the one-liner:
@@ -134,7 +114,7 @@ sudo reboot
 
 ---
 
-## 🛡️ Security & Idempotence
+##  Security & Idempotence
 
 - **Zero Root Pollution**: `install.sh` refuses to run under `sudo` directly so that files in your `$HOME` remain owned by your user. Root access is requested on-demand only for `/etc` and package management.
 - **Strict `.gitignore`**: NetworkManager Wi-Fi keys (`*.nmconnection`), SSH credentials, `.env` secrets, and browser caches are permanently barred from commits.
@@ -142,26 +122,7 @@ sudo reboot
 
 ---
 
-## 📤 Push Changes to GitHub
-
-To commit and push all newly created files to your remote repository:
-
-```bash
-cd /home/vinnoh/Development/HYDE
-
-# 1. Stage everything
-git add .
-
-# 2. Commit with a message
-git commit -m "feat: complete HyDE post-install suite & badass documentation for MacBook Pro 12,1"
-
-# 3. Push to origin
-git push -u origin main
-```
-
----
-
 <p align="center">
-  <b>⚡ Forged in silicon defiance. ⚡</b><br>
+  <b> Forged in silicon defiance. </b><br>
   <i>Apple planned its obsolescence. We stripped the bloat, weaponized the hardware, and turned an 11-year-old unibody slab into a zero-compromise, lightning-fast Wayland battlestation. Zero telemetry. Pure bare-metal control.</i>
 </p>
