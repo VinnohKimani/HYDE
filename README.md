@@ -25,7 +25,7 @@ It launches an interactive TUI checklist that configures your entire system—fr
 
 ---
 
-## 🛠️ Hardware Subsystem Matrix & Precision Engineering
+##  Hardware Subsystem Matrix & Precision Engineering
 
 The Early 2015 Retina MacBook Pro remains one of the finest unibody laptops ever built: MagSafe 2, tactile scissor switches, dual Thunderbolt 2, dedicated HDMI, full-size SD card reader, and dual USB 3.0 ports.
 
