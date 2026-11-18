@@ -16,13 +16,28 @@ log_header "HyDE Arch Linux Post-Install (MacBook Pro 12,1)"
 echo -e "${WHITE}Welcome to the automated post-install setup for HyDE (Hyprland 0.57+ on Lua).${NC}"
 echo -e "${DIM}Platform: Apple MacBook Pro 13\" Retina (Early 2015 / MacBookPro12,1)${NC}\n"
 
-# Component selection via whiptail with fallback to CLI menu
+# 1. Quick Upstream HyDE Drift Check
+if [[ -f "${SCRIPT_DIR}/scripts/sync-upstream.sh" ]] && git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    log_info "Verifying alignment with upstream HyDE repository..."
+    if ! bash "${SCRIPT_DIR}/scripts/sync-upstream.sh" --check >/dev/null 2>&1; then
+        echo -e "${YELLOW}${BOLD}[NOTICE]${NC} Upstream HyDE has new commits or code drift detected."
+        read -rp "Would you like to review and selectively sync upstream changes now? [y/N]: " do_sync
+        if [[ "$do_sync" =~ ^[Yy]$ ]]; then
+            bash "${SCRIPT_DIR}/scripts/sync-upstream.sh"
+        fi
+    else
+        log_success "Repository is fully synchronized with upstream HyDE."
+    fi
+fi
+
+# 2. Component selection via whiptail with fallback to CLI menu
 SELECTED_CHOICES=()
 
 show_whiptail_menu() {
     local choices
     choices=$(whiptail --title "HyDE Arch Linux Setup (MacBook Pro 12,1)" \
-        --checklist "Select components to configure and install (Space to toggle, Enter to confirm):" 20 78 6 \
+        --checklist "Select components to configure and install (Space to toggle, Enter to confirm):" 22 78 7 \
+        "0" "Check & Sync Upstream HyDE Changes" OFF \
         "1" "System Update & Package Installation" ON \
         "2" "Desktop & Dotfiles (HyDE / Hyprland 0.57 Lua)" ON \
         "3" "MacBook Pro 2015 Hardware & Audio Suite" ON \
@@ -34,7 +49,7 @@ show_whiptail_menu() {
             exit 0
         }
 
-    # Clean quotes from whiptail output: "1" "2" ...
+    # Clean quotes from whiptail output: "0" "1" "2" ...
     for choice in $choices; do
         SELECTED_CHOICES+=("$(echo "$choice" | tr -d '"')")
     done
@@ -42,12 +57,13 @@ show_whiptail_menu() {
 
 show_cli_menu() {
     echo -e "${CYAN}${BOLD}Select components to install:${NC}"
+    echo "  [0] Check & Sync Upstream HyDE Changes (interactive drift check)"
     echo "  [1] System Update & Package Installation (yay, base desktop, aur)"
     echo "  [2] Desktop & Dotfiles (HyDE / Hyprland 0.57 Lua, Waybar, Dunst, Rofi, Kitty, Zsh)"
     echo "  [3] MacBook Pro 2015 Hardware & Audio Suite (CS4208 woofers, DSP, SPI wake, BT)"
     echo "  [4] Tiered RAM & Performance Tuning (7.7GB ZRAM + 8GB SSD /swapfile + VM sysctl)"
     echo "  [5] Development Environments & Apps (IDEs, Docker, Bun, Node, Brave, Social apps)"
-    echo "  [6] System Services Enablement (sddm, NetworkManager, bluetooth, oomd)"
+    echo "  [6] System Services Enablement (sddm, NetworkManager, bluetooth, oomd, mbpfan)"
     echo ""
     read -rp "Enter selection (comma-separated, e.g. 1,2,3,4,5,6) [Default: 1,2,3,4,5,6]: " input_choice
 
@@ -88,6 +104,9 @@ fi
 # Execute selected modules
 for choice in "${SELECTED_CHOICES[@]}"; do
     case "$choice" in
+        0)
+            bash "${SCRIPT_DIR}/scripts/sync-upstream.sh"
+            ;;
         1)
             bash "${SCRIPT_DIR}/modules/01-packages.sh"
             ;;

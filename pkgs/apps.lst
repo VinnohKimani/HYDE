@@ -2,18 +2,27 @@
 
 # Web Browsers
 brave-bin
+firefox
+
+# Code Editors & AI IDEs
+antigravity-ide
+visual-studio-code-bin
+opencode
 
 # Communication & Social
 telegram-desktop
 discord
+kdeconnect
 
 # Knowledge Base & Note Taking
 obsidian
 
-# Code Editors & IDEs
-visual-studio-code-bin
+# Office & Productivity
+libreoffice-fresh
+freedownloadmanager
 
-# Media & Document Viewers
+# Media, Screen Capture & Document Viewers
+obs-studio
 zathura
 zathura-pdf-mupdf
 vlc

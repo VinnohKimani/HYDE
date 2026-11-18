@@ -1,13 +1,23 @@
 # Base Desktop Environment: HyDE / Hyprland 0.57+ (Wayland)
 # Core packages required for Wayland display, audio, bar, notifications, and shell
 
-# Wayland Compositor & Core
+# Wayland Compositor & Core Ecosystem
 hyprland
+hypridle
+hyprlock
+hyprsunset
+hyprpolkitagent
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 polkit-gnome
 qt5-wayland
 qt6-wayland
+uwsm
+
+# Hardware Graphics Acceleration (Intel Iris 6100 on MBP 12,1)
+vulkan-intel
+intel-media-driver
+libva-intel-driver
 
 # Display Manager
 sddm
@@ -26,6 +36,7 @@ playerctl
 # Status Bar, Launchers & Shell UI
 waybar
 rofi-wayland
+rofi-calc
 dunst
 kitty
 zsh
@@ -36,22 +47,40 @@ starship
 brightnessctl
 bluez
 bluez-utils
+blueman
 networkmanager
+network-manager-applet
+power-profiles-daemon
 systemd-oomd
 zram-generator
+udiskie
 ethtool
 lm_sensors
 acpi
 upower
 
+# Theming & Display Configuration
+nwg-displays
+nwg-look
+kvantum
+kvantum-qt5
+qt5ct
+qt6ct
+
 # Wayland Utilities & Media Capture
 grim
 slurp
 swappy
+satty
 wl-clipboard
+wl-clip-persist
 cliphist
 
-# File Management & Viewers
+# File Management, Archives & Viewers
+dolphin
+dolphin-plugins
+ark
+filelight
 thunar
 tumbler
 thunar-archive-plugin

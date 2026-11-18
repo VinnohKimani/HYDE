@@ -4,6 +4,7 @@
 base-devel
 git
 git-delta
+github-cli
 neovim
 tmux
 ripgrep
@@ -13,6 +14,7 @@ jq
 tree
 htop
 btop
+bat
 strace
 gdb
 
@@ -20,14 +22,21 @@ gdb
 zsh-syntax-highlighting
 zsh-autosuggestions
 
-# Runtimes & Languages
+# Python Ecosystem & Package Managers
 python
 python-pip
 python-virtualenv
+pyenv
+python-pipenv
+python-pipx
+uv
+
+# Modern Runtimes & Toolchains
 nodejs
 npm
 rust
 cargo
+luarocks
 clang
 cmake
 ninja
@@ -36,3 +45,6 @@ ninja
 docker
 docker-compose
 docker-buildx
+
+# Networking & Tunneling
+ngrok
