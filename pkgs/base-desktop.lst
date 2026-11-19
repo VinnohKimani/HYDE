@@ -45,6 +45,7 @@ starship
 
 # Hardware & System Utilities
 brightnessctl
+less
 bluez
 bluez-utils
 blueman
