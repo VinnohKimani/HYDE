@@ -51,7 +51,7 @@ However, running a mainline Linux kernel on proprietary Apple firmware encounter
 
 ```
 .
-├── install.sh                  # Interactive TUI/CLI checklist menu (whiptail)
+├── install.sh                  # Master setup installer with clean CLI prompts & flags
 ├── .gitignore                  # Excludes Wi-Fi passwords, SSH keys & browser caches
 ├── lib/
 │   └── common.sh               # Color logging (log_info, log_success) & sudo keep-alive
@@ -63,9 +63,8 @@ However, running a mainline Linux kernel on proprietary Apple firmware encounter
 │   ├── 05-dev-apps.sh          # Compilers, Bun/Docker runtimes & desktop applications
 │   └── 06-services.sh          # Enables SDDM, NetworkManager, Bluetooth, OOMD, mbpfan
 ├── pkgs/                       # Modular package manifests (.lst)
-├── dotfiles/                   # Symlinked to ~/.config/ (Hyprland Lua, Waybar, Kitty, etc.)
-├── scripts/                    # Symlinked to ~/.local/bin/ (Brightness, Volume, Screen cap)
-├── scripts/                    # Symlinked to ~/.local/bin/ (Brightness, Volume, Sync, Screen cap)
+├── dotfiles/                   # Symlinked to ~/.config/ (Hyprland 0.57 Lua, Waybar, Kitty, etc.)
+├── scripts/                    # Symlinked to ~/.local/bin/ (Brightness, Volume, Display, Screen cap)
 ├── system/                     # Root-level kernel modprobe, audio firmware & sysctl
 └── assets/                     # Crisp 2560x1600 Retina abstract wallpapers & custom CSS
 ```
@@ -79,16 +78,19 @@ However, running a mainline Linux kernel on proprietary Apple firmware encounter
 ```bash
 sudo pacman -S --needed git && git clone https://github.com/VinnohKimani/HYDE.git && cd HYDE && ./install.sh
 ```
-3. Select your components from the interactive checklist:
-   - [x] **1. System Update & Package Installation**
-   - [x] **2. Desktop & Dotfiles (HyDE / Hyprland 0.57 Lua)**
-   - [x] **3. MacBook Pro 2015 Hardware & Audio Suite**
-   - [x] **4. Tiered RAM & Performance Tuning**
-   - [x] **5. Development Environments & Apps**
-   - [x] **6. System Services Enablement**
-4. Reboot into your new battlestation:
+3. Press `Enter` to confirm full automated deployment.
+4. When complete, reboot into your configured desktop:
 ```bash
 sudo reboot
+```
+
+### Installer Options
+```bash
+./install.sh             # Interactive standard prompt (Enter executes full setup)
+./install.sh -y, --yes   # Non-interactive automated deployment (ideal for unattended installs)
+./install.sh -c, --custom # Interactively choose individual modules to run
+./install.sh -s, --sync  # Check and sync upstream HyDE changes before installing
+./install.sh -h, --help  # Show usage help
 ```
 
 ---
@@ -140,7 +142,7 @@ To keep your system updated with official [HyDE-Project/HyDE](https://github.com
 ./scripts/sync-upstream.sh --stage     # Create test staging branch and attempt dry-run merge
 ```
 
----sudo pacman -S obs-studio
+---
 
 
 ##  Security & Idempotence
