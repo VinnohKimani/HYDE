@@ -101,7 +101,13 @@ setup_upstream_remote() {
     fi
 
     log_info "Fetching latest upstream changes..."
-    git fetch "${UPSTREAM_REMOTE}" --prune --quiet
+    if [[ "$(git rev-parse --is-shallow 2>/dev/null || echo false)" == "true" ]]; then
+        log_warn "Shallow git clone detected (--depth 1). Unshallowing to allow commit drift calculation..."
+        git fetch --unshallow "${UPSTREAM_REMOTE}" "${UPSTREAM_BRANCH:-master}" --quiet 2>/dev/null || \
+            git fetch --depth=100 "${UPSTREAM_REMOTE}" --quiet 2>/dev/null || true
+    else
+        git fetch "${UPSTREAM_REMOTE}" --prune --quiet 2>/dev/null || true
+    fi
 
     # Determine upstream primary branch (master or main)
     if git rev-parse --verify "${UPSTREAM_REMOTE}/master" >/dev/null 2>&1; then
@@ -172,20 +178,33 @@ list_changed_files() {
     echo ""
 }
 
+# Determine appropriate pager
+get_pager() {
+    if [[ -n "${PAGER:-}" ]] && has_cmd "${PAGER%% *}"; then
+        echo "$PAGER"
+    elif has_cmd delta; then
+        echo "delta"
+    elif has_cmd less; then
+        echo "less -R"
+    else
+        echo "cat"
+    fi
+}
+
 # Display diff with optional pager
 show_diff() {
     log_header "Unified Diff: HEAD vs ${UPSTREAM_REF}"
-    if has_cmd delta; then
-        git diff "HEAD...${UPSTREAM_REF}" | delta || true
-    else
-        git diff --color=always "HEAD...${UPSTREAM_REF}" | ${PAGER:-less -R} || true
-    fi
+    local pager
+    pager="$(get_pager)"
+    git diff --color=always "HEAD...${UPSTREAM_REF}" 2>/dev/null | $pager || true
 }
 
 # Display upstream commit log
 show_log() {
     log_header "Upstream Commits (${UPSTREAM_REF}) Not In Local HEAD"
-    git log --graph --oneline --decorate --color=always "HEAD..${UPSTREAM_REF}" | ${PAGER:-less -R} || true
+    local pager
+    pager="$(get_pager)"
+    git log --graph --oneline --decorate --color=always "HEAD..${UPSTREAM_REF}" 2>/dev/null | $pager || true
 }
 
 # Safely create a staging branch to test merge
